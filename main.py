@@ -1,17 +1,16 @@
-import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-import re
-from datetime import datetime
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.feature_extraction.text import TfidfTransformer
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.pipeline import Pipeline
-from sklearn import preprocessing
-from sklearn.decomposition import PCA
+import pandas as pd
+# import re
+# import seaborn as sns
+
+# from datetime import datetime
+# from sklearn.feature_extraction.text import TfidfVectorizer
+# from sklearn.feature_extraction.text import TfidfTransformer
+# from sklearn.feature_extraction.text import CountVectorizer
+# from sklearn.pipeline import Pipeline
+# from sklearn import preprocessing
+# from sklearn.decomposition import PCA
 
 ##------------read the files---------------------##
 data_xy_train = pd.read_csv(r'C:\Users\Owner\OneDrive\Documents\ml\XY_train.csv')
