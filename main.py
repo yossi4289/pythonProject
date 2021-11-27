@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from numpy import isnan
 import pandas as pd
+from pathlib import Path
 # import re
 # import seaborn as sns
 
@@ -12,11 +14,12 @@ import pandas as pd
 # from sklearn import preprocessing
 # from sklearn.decomposition import PCA
 
+ROOT_PATH = Path().absolute()
+DATASET_PATH = ROOT_PATH / 'data' / 'XY_train.csv'
 ##------------read the files---------------------##
-data_xy_train = pd.read_csv(r'C:\Users\Owner\OneDrive\Documents\ml\XY_train.csv')
+data_xy_train = pd.read_csv(DATASET_PATH)
 # data_x_test = pd.read_csv(r'C:\Users\shirg\Downloads\X_test.csv')
 # data_json = pd.read_json(r'C:\Users\shirg\Desktop\לימוד מכונה\partOne\Jason_File.json')
-
 
 
 # ##------------EDA---------------##
@@ -36,40 +39,28 @@ data_xy_train = pd.read_csv(r'C:\Users\Owner\OneDrive\Documents\ml\XY_train.csv'
 # plt.show()
 # #
 # ##--gender--##
-def create_data():
-    return pd.Series(data_xy_train['gender']).values
+
+def clean_nan(s: pd.Series) -> pd.Series:
+    return s[~s.isna()]
 
 
-df = create_data()
-dt=np.isna(df)
-#print(df.isna())
-#dt=pd.Series.loc[df.isna()]
-print(dt)
-# print (df)
-# genders = data_xy_train['gender']
+def plot_hist(s: pd.Series, title: str, x_label: str, y_label: str = 'Frequency', bins=50, color='darkblue'):
+    plt.hist(s, bins=bins, color=color)
+    plt.title(title, fontsize=20)
+    plt.xlabel(x_label, fontsize=15)
+    plt.ylabel(y_label, fontsize=15)
+    plt.show()
 
-# df.dropna()
-print(df)
 
-# print(df.isnull)
-for gender in df:
-    if gender == np.nan:
-        gender = 'no dd'
-print(df.isna)
-df.isnull().sum()
-# plt.hist(genders, bins=50, color='darkblue')
-# plt.title("gender Histogram", fontsize=20)
-# plt.xlabel('gender', fontsize=15)
-# plt.ylabel('Frequency', fontsize=15)
-# plt.show()
+if __name__ == '__main__':
+    gender = clean_nan(s=data_xy_train['gender'])
+    plot_hist(s=gender,
+              title='Gender histogram',
+              x_label='gender')
+    plot_hist(s=data_xy_train['training_hours'],
+              title="training_hours Histogram",
+              x_label='training_hours')
 
-# ##--training_hours--##
-plt.hist(data_xy_train['training_hours'], bins=1000, color='darkblue')
-plt.title("training_hours Histogram", fontsize=20)
-plt.xlabel('training_hours', fontsize=15)
-plt.ylabel('Frequency', fontsize=15)
-plt.show()
-#
 # ##--View Count Count--##
 # plt.hist(y, bins=10000, color='darkblue')
 # plt.title("View Count Histogram", fontsize=20)
