@@ -3,6 +3,7 @@ import numpy as np
 from numpy import isnan
 import pandas as pd
 from pathlib import Path
+
 # import re
 # import seaborn as sns
 
@@ -17,7 +18,10 @@ from pathlib import Path
 ROOT_PATH = Path().absolute()
 DATASET_PATH = ROOT_PATH / 'data' / 'XY_train.csv'
 ##------------read the files---------------------##
-data_xy_train = pd.read_csv(DATASET_PATH)
+# data_xy_train = pd.read_csv(DATASET_PATH)
+data_xy_train = pd.read_csv(r'C:\Users\Owner\OneDrive\Documents\ml\XY_train.csv')
+
+
 # data_x_test = pd.read_csv(r'C:\Users\shirg\Downloads\X_test.csv')
 # data_json = pd.read_json(r'C:\Users\shirg\Desktop\לימוד מכונה\partOne\Jason_File.json')
 
@@ -52,78 +56,89 @@ def plot_hist(s: pd.Series, title: str, x_label: str, y_label: str = 'Frequency'
     plt.show()
 
 
-if __name__ == '__main__':
-    gender = clean_nan(s=data_xy_train['gender'])
-    plot_hist(s=gender,
-              title='Gender histogram',
-              x_label='gender')
-    plot_hist(s=data_xy_train['training_hours'],
-              title="training_hours Histogram",
-              x_label='training_hours')
+def plot_scatter(s: pd.Series, yi: pd.Series, title1: str, title2: str, ):
+    plt.scatter(x=s, y=y)
+    plt.title("Interaction between $title1 and $title2", fontsize=20)
+    plt.xlabel('title1')
+    plt.ylabel('title2')
+    plt.show()
 
-# ##--View Count Count--##
-# plt.hist(y, bins=10000, color='darkblue')
-# plt.title("View Count Histogram", fontsize=20)
-# plt.xlabel('View Count', fontsize=15)
-# plt.ylabel('Frequency', fontsize=15)
-# plt.show()
 #
-# ##--Published At Histogram--##
-# months_publish = list()
-# time = data_xy_train['publishedAt'].values
-# for date in time :
-#     index1 = date.split(sep="-")
-#     months_publish.append(index1[1])
-# months_publish.sort()
+# if __name__ == '__main__':
 #
-# plt.hist(months_publish,bins=20, color='darkblue')
-# plt.title("Published At Histogram", fontsize=20)
-# plt.xlabel('Published At', fontsize=15)
-# plt.ylabel('Frequency', fontsize=15)
-# plt.show()
+#     gender = clean_nan(s=data_xy_train['gender'])
+#     plot_hist(s=gender,
+#               title='Gender histogram',
+#               x_label='gender')
+#     plot_hist(s=data_xy_train['training_hours'],
+#               title="training_hours Histogram",
+#               x_label='training_hours')
 #
-# ##--Trending Date Histogram--##
-# months_trending = list()
-# months = data_xy_train['trending_date'].values
-# for date in months :
-#     index1 = date.split(sep="-")
-#     months_trending.append(index1[1])
-# months_trending.sort()
 #
-# # plt.hist(months_trending,bins=20, color='darkblue')
-# plt.title("Trending Date Histogram", fontsize=20)
-# plt.xlabel('Trending Date', fontsize=15)
-# plt.ylabel('Frequency', fontsize=15)
-# plt.show()
 #
-# # ##--Likes and Dislikes--##
-# plt.scatter(x=data_xy_train['likes'], y=data_xy_train['dislikes'])
-# plt.title("Interaction between likes and dislikes", fontsize=20)
-# plt.xlabel('Likes')
-# plt.ylabel('Dislikes')
-# plt.show()
+# city=clean_nan(s=data_xy_train['city'])
+# plot_hist(s=city,
+#           title='city histogram',
+#           x_label='city')
+# cityD=clean_nan(s=data_xy_train['city_development_index'])
+# plot_hist(s=cityD,
+#           title='city development index histogram',
+#           x_label='cityD')
+# relevntExp=clean_nan(s=data_xy_train['relevent_experience'])
+# plot_hist(s=relevntExp,
+#           title='relevent experience histogram',
+#           x_label='relevent experience')
+
+# university=clean_nan(s=data_xy_train['enrolled_university'])
+# plot_hist(s=university,
+#           title='enrolled university histogram',
+#           x_label='enrolled university ')
 #
-# # ##--Likes and comment count--##
-# plt.scatter(x=data_xy_train['comment_count'], y=data_xy_train['likes'])
-# plt.title("Interaction between likes and comments", fontsize=20)
-# plt.xlabel('Comment Count')
-# plt.ylabel('Likes')
-# plt.show()
+# eduacation=clean_nan(s=data_xy_train['education_level'])
+# plot_hist(s=eduacation,
+#           title='education level histogram',
+#           x_label='education level')
 #
-#  # ##--Likes and view count--##
-# plt.scatter(y= y, x=data_xy_train['likes'])
-# plt.title("Interaction between likes and view count", fontsize=20)
-# plt.ylabel('View Count')
-# plt.xlabel('Likes')
-# plt.show()
+
+
+# diceplin=clean_nan(s=data_xy_train['major_discipline'])
+# plot_hist(s=diceplin,
+#           title='major discipline histogram',
+#           x_label='major discipline')
+# exp=clean_nan(s=data_xy_train['experience'])
+# plot_hist(s=exp,
+#           title='experience histogram',
+#           x_label='experience')
+
+# companyS=clean_nan(s=data_xy_train['company_size'])
+# plot_hist(s=companyS,
+#           title='company size histogram',
+#           x_label='company size')
+
+# companyT=clean_nan(s=data_xy_train['company_type'])
+# plot_hist(s=companyT,
+#           title='company type histogram',
+#           x_label='company type')
+
+# last_new_job=clean_nan(s=data_xy_train['last_new_job'])
+# plot_hist(s=last_new_job,
+#           title='last_new_job histogram',
+#           x_label='last_new_job')
 #
-# ##--Dislikes and view count--##
-# plt.scatter(y= y, x=data_xy_train['dislikes'])
-# plt.title("Interaction between dislikes and view count", fontsize=20)
-# plt.ylabel('View Count')
-# plt.xlabel('Dislikes')
-# plt.show()
 #
+# training_hours=clean_nan(s=data_xy_train['training_hours'])
+# plot_hist(s=training_hours,
+#           title='training hours histogram',
+#           x_label='training hours')
+
+x=data_xy_train['training_hours']
+y=data_xy_train['last_new_job']
+plot_scatter(s=x, yi=y, title1='training_hours', title2='last_new_job')
+
+
+
+
+
 # ##-------Pre Prossecing--------##
 # ##--Missing Values--##
 # #-empty Categories-#
